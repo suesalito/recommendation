@@ -1,24 +1,13 @@
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.svm import SVC
-# from matplotlib.colors import ListedColormap
+from matplotlib.colors import ListedColormap
 import pandas as pd
 import operator
 
-# ======== Select a directory:
-
-#### *** Note, tkinter will not work with matplot, please see the detail from
-# http://stackoverflow.com/questions/32019556/matplotlib-crashing-tkinter-application
-
-# import tkinter as tk
-# from tkinter import filedialog
-#
-# root = tk.Tk()
-# root.withdraw()
-# file_path = filedialog.askopenfilename()
 
 
-df = pd.read_csv('/Users/suesalito/Desktop/recommedation/sales_data_sep_2016_delete00.csv', header=None, low_memory=False,
+df = pd.read_csv('/Users/shying/Desktop/sales_data_sep_2016_delete00.csv', header=None, low_memory=False,
                  names=['Custid','Invtid','qty'],
                  dtype={'Custid': str, 'Invtid': int, 'qty':float})
 
@@ -199,44 +188,6 @@ print (jaccard_similarity_score(y_true, y_pred))
 # Calculate jacard similarity based on the train_array
 print (jaccard_similarity_score(train_array[1015], train_array[1016]))
 print('=========')
-print ('-------------------------------------------------------------')
-print (jaccard_similarity_score(np.array([[0,0,0,0,1,1, 1,0, 0,1,0,0,0,1,1]]), np.array([[0,0,0,0,1,1, 0,0, 0,0,1,0,0,1,1]])))
-
-print ('-------------------------------------------------------------')
 print (jaccard_similarity_score(train_array[1016], train_array[1016]))
-print('====xxxxxx=====')
-print (jaccard_similarity_score(np.array([train_array[1016]]), np.array([train_array[1016]])))
-print('====xxxxxx=====')
-print (jaccard_similarity_score(np.array([train_array[1015]]), np.array([train_array[1016]])))
-print('====xxxxxx=====')
-for i in range (0,cust_i):
-    if ((jaccard_similarity_score(np.array([train_array[1000]]), np.array([train_array[i]]))) > 0.2):
-        print (cust_ind[i])
-        print (jaccard_similarity_score(np.array([train_array[1000]]), np.array([train_array[i]])))
 
 
-# y_pred22 = [0, 2, 1, 3]
-# y_true22 = [0, 1, 2, 3]
-# print (jaccard_similarity_score(np.array([y_pred22]), np.array([y_true22])))
-
-print()
-print('++++++++++++++++++++++++++')
-
-# for i in range (0,100):
-#     print (i)
-#     for j in range (0,10):
-#         print('i :',i,' j :', j)
-#     print ('end of ,',i,' loop')
-
-
-test_array = np.ndarray(shape=(3,3), dtype=float)
-print(test_array)
-
-test_array2 = np.zeros(shape=(3,3), dtype=float)
-print(test_array2)
-
-test_array2[0,0] = 2.5
-print(test_array2)
-
-test_array2[2,1] = 4.7
-print(test_array2)
