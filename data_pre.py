@@ -166,12 +166,12 @@ np.set_printoptions(threshold=np.inf)
 # print (train_array[1000,93])
 # print(invt_ind[93])
 
-print (cust_ind[1016])
-print (train_array[1016])
+# print (cust_ind[1016])
+# print (train_array[1016])
 
-for i in range(0,invt_j):
-    if(train_array[1016,i] == 1):
-        print(invt_ind[i])
+# for i in range(0,invt_j):
+#     if(train_array[1016,i] == 1):
+#         print(invt_ind[i])
 
 # print (cust_ind[1017])
 
@@ -179,15 +179,56 @@ print()
 print("# Test Jaccard")
 # Test Jaccard
 from sklearn.metrics import jaccard_similarity_score
-y_pred = [0, 2, 1, 3]
-y_true = [0, 1, 2, 3]
+y_pred = [0, 2, 1, 3,0,0,0,0,0,0,0,0]
+y_true = [0, 1, 2, 3,0,0,0,0,0,0,0,0]
 print (jaccard_similarity_score(y_true, y_pred))
+y_pred33 = [0, 2, 1, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+y_true33 = [0, 1, 2, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+print (jaccard_similarity_score(y_true33, y_pred33))
+# x_pred = [train_array[i]]
+# x_true = [train_array[j]]
+# print (jaccard_similarity_score(x_true, x_pred))
 
 
 
 # Calculate jacard similarity based on the train_array
+# print (cust_ind[1015])
 print (jaccard_similarity_score(train_array[1015], train_array[1016]))
-print('=========')
-print (jaccard_similarity_score(train_array[1016], train_array[1016]))
+print(train_array[1015])
+print("# Test Jaccard 2")
+# Test Jaccard
+cust_i = cust_ind.shape[0]
+cust_j = cust_ind.shape[0]
+train_array2 = np.zeros(shape=(cust_i,cust_j), dtype=float)
+# print(train_array2)
+
+# for i in range(0,1):
+#     try:
+for j in range(0,cust_j):
+    train_array2[123,j] = jaccard_similarity_score(train_array[123], train_array[j])
+
+    #
+    # except ValueError:
+    #     print ('error on line :', i)
+
+        # print (jaccard_similarity_score(train_array2[i], train_array2[j]))
+        # print (jaccard_similarity_score(train_array2[i], train_array2[j]))
 
 
+# print (train_array2[123])
+#
+# for i in range (0,cust_i):
+#     if train_array2[123,i] >= 0.981:
+#         print (cust_ind[i],i)
+#         print(train_array[i])
+#         # print('=========')
+# print (jaccard_similarity_score(train_array[1016], train_array[1016]))
+#
+# print (cust_ind)
+# print (invt_ind)
+# print (train_array[0])
+
+# print (jaccard_similarity_score(train_array[123], train_array[567]))
+# print (train_array[123])
+# print()
+# print(train_array[567])
