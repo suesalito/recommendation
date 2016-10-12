@@ -7,7 +7,7 @@ import operator
 
 
 
-df = pd.read_csv('/Users/suesalito/Desktop/recommedation/sales_data_sep_2016_delete00.csv', header=None, low_memory=False,
+df = pd.read_csv('/Users/shying/Desktop/sales_data_sep_2016_delete00.csv', header=None, low_memory=False,
                  names=['Custid','Invtid','qty'],
                  dtype={'Custid': str, 'Invtid': int, 'qty':float})
 
@@ -194,50 +194,53 @@ print (jaccard_similarity_score(y_true33, y_pred33))
 # Calculate jacard similarity based on the train_array
 # print (cust_ind[1015])
 print (jaccard_similarity_score(train_array[1015], train_array[1016]))
-print(train_array[1015])
+# print(train_array[1015])
 print("# Test Jaccard 2")
 # Test Jaccard
 cust_i = cust_ind.shape[0]
 cust_j = cust_ind.shape[0]
-train_array2 = np.zeros(shape=(cust_i,cust_j), dtype=float)
-# print(train_array2)
+jaccard_output = np.zeros(shape=(cust_i,cust_j), dtype=float)
+# print(jaccard_output)
 
 # for i in range(0,cust_i):
 for i in range(0,5):
      try:
          for j in range(0,cust_j):
             # print (jaccard_similarity_score(np.array([train_array[1016]]), np.array([train_array[1016]])))
-            train_array2[i,j] = jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))
+            jaccard_output[i,j] = jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))
 
      except ValueError:
          print ('error on line :', i)
 
-        # print (jaccard_similarity_score(train_array2[i], train_array2[j]))
-        # print (jaccard_similarity_score(train_array2[i], train_array2[j]))
+        # print (jaccard_similarity_score(jaccard_output[i], jaccard_output[j]))
+        # print (jaccard_similarity_score(jaccard_output[i], jaccard_output[j]))
 
-print (train_array2[0])
+# print (jaccard_output[0])
 
 print ('--------------- 0 -> 19')
-for i in range (0,20):
+print cust_ind[100]
+# for i in range (0,20):
+for i in range(100, 1017):
     for j in range (0,cust_i):
-        if ((jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))) > 0.35):
-            print (cust_ind[i],' and',cust_ind[j])
-            print (jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))
+        if ((jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))) > 0.50)\
+                and ((jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))< 1.00):
+            print cust_ind[i],cust_ind[j],(jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))
+            # print (jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))
 
 print ('--------------- 20 -> 30')
 
-for i in range (20, 10):
-    for j in range (0,cust_i):
-        if ((jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))) > 0.35):
-            print (cust_ind[i],' and',cust_ind[j])
-            print (jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))
+# for i in range (20, 10):
+#     for j in range (0,cust_i):
+#         if ((jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]]))) > 0.25):
+#             print (cust_ind[i],' and',cust_ind[j])
+#             print (jaccard_similarity_score(np.array([train_array[i]]), np.array([train_array[j]])))
+#
+#
 
-
-
-# print (train_array2[123])
+# print (jaccard_output[123])
 #
 # for i in range (0,cust_i):
-#     if train_array2[123,i] >= 0.981:
+#     if jaccard_output[123,i] >= 0.981:
 #         print (cust_ind[i],i)
 #         print(train_array[i])
 #         # print('=========')
@@ -252,10 +255,10 @@ for i in range (20, 10):
 # print()
 # print(train_array[567])
 
-print ('-------------------------------------------------------------')
-print (jaccard_similarity_score(np.array([[0,0,0,0,1,1, 1,0, 0,1,0,0,0,1,1]]), np.array([[0,0,0,0,1,1, 0,0, 0,0,1,0,0,1,1]])))
-
-print ('-------------------------------------------------------------')
-print (jaccard_similarity_score(train_array[1016], train_array[1016]))
-print('====xxxxxx=====')
-print (jaccard_similarity_score(np.array([train_array[1016]]), np.array([train_array[1016]])))
+# print ('-------------------------------------------------------------')
+# print (jaccard_similarity_score(np.array([[0,0,0,0,1,1, 1,0, 0,1,0,0,0,1,1]]), np.array([[0,0,0,0,1,1, 0,0, 0,0,1,0,0,1,1]])))
+#
+# print ('-------------------------------------------------------------')
+# print (jaccard_similarity_score(train_array[1015], train_array[1016]))
+# print('====xxxxxx=====')
+# print (jaccard_similarity_score(np.array([train_array[1015]]), np.array([train_array[1016]])))
