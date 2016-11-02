@@ -130,11 +130,11 @@ def neighbor(input_array,input_number):    # number = total neighbors input
     # print (customer_rec_item_score.shape[1])
 
     # neighbor_output_name
-    export_csv(neighbor_output_name,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_name.csv')
+    export_csv(neighbor_output_name,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_name3.csv')
     # neighbor_output_score
-    export_csv(neighbor_output_score,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_score.csv')
+    export_csv(neighbor_output_score,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_score3.csv')
     # Recommendation system
-    export_csv(customer_rec_item_score,'/Users/suesalito/Desktop/recommedation/cosine_rec_item_output.csv')
+    export_csv(customer_rec_item_score,'/Users/suesalito/Desktop/recommedation/cosine_rec_item_output3.csv')
 
 
 
@@ -146,12 +146,12 @@ def neighbor(input_array,input_number):    # number = total neighbors input
 
 
 
-df_buy_index = pd.read_csv('/Users/suesalito/Desktop/recommedation/output.csv', header=None, low_memory=False, dtype=int)
-df_invt = pd.read_csv('/Users/suesalito/Desktop/recommedation/inventoryid.csv', header=0, low_memory=False, dtype='object')
-df_cust = pd.read_csv('/Users/suesalito/Desktop/recommedation/customerid.csv', header=None, low_memory=False, dtype='str')
+df_buy_index = pd.read_csv('/Users/suesalito/Desktop/recommedation/output3.csv', header=None, low_memory=False, dtype=int)
+df_invt = pd.read_csv('/Users/suesalito/Desktop/recommedation/inventoryid3.csv', header=0, low_memory=False, dtype='object')
+df_cust = pd.read_csv('/Users/suesalito/Desktop/recommedation/customerid3.csv', header=0, low_memory=False, dtype='str')
 
 # Select the Cosine or Jaccard index input.
-df_input = pd.read_csv('/Users/suesalito/Desktop/recommedation/cosine_index_score_new.csv', header=0, low_memory=False, dtype=float)
+df_input = pd.read_csv('/Users/suesalito/Desktop/recommedation/cosine_index_score_new_3.csv', header=0, low_memory=False, dtype=float)
 
 
 index_array = df_input.iloc[0:,0:].values

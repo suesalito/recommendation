@@ -9,11 +9,11 @@ from scipy import spatial
 
 
 
-df_train = pd.read_csv('/Users/suesalito/Desktop/recommedation/output.csv', header=None, low_memory=False, dtype=int)
+df_train = pd.read_csv('/Users/suesalito/Desktop/recommedation/output3.csv', header=None, low_memory=False, dtype=int)
 
-df_invt = pd.read_csv('/Users/suesalito/Desktop/recommedation/inventoryid.csv', header=None, low_memory=False, dtype='object')
+df_invt = pd.read_csv('/Users/suesalito/Desktop/recommedation/inventoryid3.csv', header=0, low_memory=False, dtype='object')
 
-df_cust = pd.read_csv('/Users/suesalito/Desktop/recommedation/customerid.csv', header=None, low_memory=False, dtype='object')
+df_cust = pd.read_csv('/Users/suesalito/Desktop/recommedation/customerid3.csv', header=0, low_memory=False, dtype='object')
 
 train_array = df_train.iloc[0:,0:].values
 print (train_array)
@@ -51,7 +51,7 @@ import csv
 
 # Create the csv file for the train_input
 
-fl = open('/Users/suesalito/Desktop/recommedation/cosine_index_score_new.csv', 'w')
+fl = open('/Users/suesalito/Desktop/recommedation/cosine_index_score_new_3.csv', 'w')
 
 writer = csv.writer(fl)
 
