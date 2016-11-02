@@ -7,12 +7,12 @@ from sklearn.metrics import jaccard_similarity_score
 import operator
 from scipy import spatial
 
-def export_csv(rec_array_csv):
+def export_csv(rec_array_csv, path):
     import csv
 
     # Create the csv file for the train_input
 
-    fl = open('/Users/suesalito/Desktop/recommedation/cosine_rec_array4.csv', 'w')
+    fl = open(path, 'w')
 
     writer = csv.writer(fl)
 
@@ -24,6 +24,7 @@ def export_csv(rec_array_csv):
         writer.writerow(values)
 
     fl.close()
+    print ("File has been saved at :",path)
 
 def neighbor(input_array,input_number):    # number = total neighbors input
     cust_i = input_array.shape[0]
@@ -113,22 +114,27 @@ def neighbor(input_array,input_number):    # number = total neighbors input
 
         # print (neighbor_output_score[i])
 
-    print (customer_rec_item_score.shape[0])
-    print (customer_rec_item_score.shape[1])
+    # print (customer_rec_item_score.shape[0])
+    # print (customer_rec_item_score.shape[1])
 
     customer_rec_item_score = np.hstack((cust_ind,customer_rec_item_score))
-    print (invt_ind)
+    # print (invt_ind)
     invt_ind_header = np.vstack((['Table'],invt_ind))         # concat the header
     # print (invt_ind_header.shape[0])
     invt_ind_header_temp = np.transpose(invt_ind_header)
-    print (invt_ind_header.shape[0])
+    # print (invt_ind_header.shape[0])
 
     customer_rec_item_score = np.vstack([invt_ind_header_temp,customer_rec_item_score])         # concat the header
 
-    print (customer_rec_item_score.shape[0])
-    print (customer_rec_item_score.shape[1])
+    # print (customer_rec_item_score.shape[0])
+    # print (customer_rec_item_score.shape[1])
 
-    export_csv(customer_rec_item_score)
+    # neighbor_output_name
+    export_csv(neighbor_output_name,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_name.csv')
+    # neighbor_output_score
+    export_csv(neighbor_output_score,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_score.csv')
+    # Recommendation system
+    export_csv(customer_rec_item_score,'/Users/suesalito/Desktop/recommedation/cosine_rec_item_output.csv')
 
 
 
