@@ -26,22 +26,27 @@ def export_csv(rec_array_csv, path):
     fl.close()
     print ("File has been saved at :",path)
 
-def neighbor(input_array,input_number):    # number = total neighbors input
+def neighbor(input_array,input_number,rec_number):    # number = total neighbors input
     cust_i = input_array.shape[0]
     print (cust_i)
     invt_j = invt_ind.shape[0]
     input_range = input_number +1
+    rec_number_range = rec_number +1
     neighbor_output_name = np.zeros(shape=(cust_i,input_range), dtype='object')
     neighbor_output_score = np.zeros(shape=(cust_i,input_range), dtype='object')
+    customer_rec_item = np.zeros(shape=(cust_i,rec_number_range), dtype='object')
+    customer_rec_item_weight = np.zeros(shape=(cust_i,rec_number_range), dtype='object')
     customer_rec_item_score = np.zeros(shape=(cust_i,invt_j), dtype=int)
     print ("Test from function ===== ")
     temp_array = np.zeros(shape=(cust_i,2), dtype='object')
+    temp_array_rec = np.zeros(shape=(invt_j,2), dtype='object')
     # print (temp_array)
 
     temp_array[:,0] = np.transpose(cust_ind[:])
+    temp_array_rec[:,0] = np.transpose(invt_ind[:])
 
     for i in range (0,cust_ind.shape[0]):
-    # for i in range (1150,1151):
+    # for i in range (0,10):
         # print ("TEST ",input_array[:,i])
         temp_array[:,1] = np.transpose(input_array[:,i])
         # temp_array[1] = np.transpose.input_array[1]
@@ -62,11 +67,11 @@ def neighbor(input_array,input_number):    # number = total neighbors input
         print ("*** Start process", cust_ind[i])
         neighbor_output_name[i,0] = cust_ind.item(i)
         neighbor_output_name[i,1:] = top_neighbor_array[1:input_range,0]
-        # print (neighbor_output_name[i])
+        print (neighbor_output_name[i])
 
         neighbor_output_score[i,0] = cust_ind.item(i)
         neighbor_output_score[i,1:] = top_neighbor_array[1:input_range,1]
-        # print (neighbor_output_score[i])
+        print (neighbor_output_score[i])
 
         print ("*** Get the index of neighbors for customer", cust_ind[i])
         # itemindex = np.where(cust_ind==cust_ind.item(i))
@@ -82,8 +87,10 @@ def neighbor(input_array,input_number):    # number = total neighbors input
         # base_cust_buy_index = np.nonzero(buy_index[neighbor_index[i,0]])
         base_cust_buy_index = np.nonzero(buy_index[neighbor_index[i]])
         ## base_cust_buy_index[1] returns the number of invtid were bought by all customers
-        # print (base_cust_buy_index[1])        # See list of product
-
+        # print (base_cust_buy_index)        # See list of product
+        cust_buy_dup_index = np.nonzero(buy_index[neighbor_index[i,0]])
+        # print (cust_buy_dup_index)
+        # base_cust_buy_index = np.nonzero(buy_index[neighbor_index[i]])
         # ******* (Count the quantity weight item from neighbors
         unique, counts = np.unique(base_cust_buy_index[1], return_counts=True)
         # print (dict(zip(unique, counts)))
@@ -95,7 +102,22 @@ def neighbor(input_array,input_number):    # number = total neighbors input
         #         print (k)
 
         customer_rec_item_score[i,unique] = counts
+        customer_rec_item_score[i,cust_buy_dup_index] = -1
 
+
+        temp_array_rec[:,1] = np.transpose(customer_rec_item_score[i,:])
+        # print (temp_array_rec)
+        rec_item_sorted = sorted(temp_array_rec, key = operator.itemgetter(1), reverse=True)
+        top_rec_array = np.array(rec_item_sorted, dtype='object')
+
+
+        customer_rec_item[i,0] = cust_ind.item(i)
+        customer_rec_item[i,1:] = top_rec_array[1:rec_number_range,0]
+        customer_rec_item_weight[i,0] = cust_ind.item(i)
+        customer_rec_item_weight[i,1:] = top_rec_array[1:rec_number_range,1]
+
+        print (customer_rec_item[i])
+        print (customer_rec_item_weight[i])
         # print (customer_rec_item_score[i])
         #
 
@@ -130,20 +152,17 @@ def neighbor(input_array,input_number):    # number = total neighbors input
     # print (customer_rec_item_score.shape[1])
 
     # neighbor_output_name
-    export_csv(neighbor_output_name,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_name3.csv')
+    export_csv(neighbor_output_name,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_name4.csv')
     # neighbor_output_score
-    export_csv(neighbor_output_score,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_score3.csv')
+    export_csv(neighbor_output_score,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_output_score4.csv')
+
+    # Reccomendation_name
+    export_csv(customer_rec_item,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_rec_item4.csv')
+    # Recommendation_qty_weight
+    export_csv(customer_rec_item_weight,'/Users/suesalito/Desktop/recommedation/cosine_neighbor_rec_weight4.csv')
+
     # Recommendation system
-    export_csv(customer_rec_item_score,'/Users/suesalito/Desktop/recommedation/cosine_rec_item_output3.csv')
-
-
-
-
-
-
-
-
-
+    export_csv(customer_rec_item_score,'/Users/suesalito/Desktop/recommedation/cosine_rec_item_output4.csv')
 
 
 df_buy_index = pd.read_csv('/Users/suesalito/Desktop/recommedation/output3.csv', header=None, low_memory=False, dtype=int)
@@ -182,7 +201,7 @@ print("# X nearest neighbors calculation ----------")
 np.set_printoptions(threshold=np.inf)
 # print (index_array[:,0])
 # print (index_array[-1])
-neighbor(index_array,5)
+neighbor(index_array,5,10) ## send number of neighbors and number or recommendation return
 
 
 
