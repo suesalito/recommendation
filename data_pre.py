@@ -5,7 +5,7 @@ from matplotlib.colors import ListedColormap
 import pandas as pd
 import operator
 
-
+# testgit import
 
 df = pd.read_csv('/Users/shying/Desktop/sales_data_sep_2016_delete00.csv', header=None, low_memory=False,
                  names=['Custid','Invtid','qty'],
